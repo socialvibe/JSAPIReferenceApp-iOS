@@ -50,7 +50,7 @@ class ViewController: UIViewController {
                     adResponseView.text = "No ads available"
                 }
             } catch {
-                print(error)
+                print("fetchAdJson() error: ", error)
             }
         }
     }
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    func fetchAdJson() async throws -> String? {
+    func fetchAdJson() async throws -> String? {        
         // can pass other parameters like age/gender
         // https://github.com/socialvibe/truex-ads-docs/blob/master/web_service_ad_api.md#get-parameters
         let requestParams = [
@@ -78,6 +78,8 @@ class ViewController: UIViewController {
         }
         urlComponents.queryItems = requestParams
         let url = urlComponents.url!
+        
+        print("fetchAdJson() Ad Request Url: ", url)
         
         // make ad request
         var adRequest = URLRequest(url: url)
